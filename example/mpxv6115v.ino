@@ -76,7 +76,7 @@ void monitor()
 {
 
 }
-void temp_measure()
+unsigned int temp_measure()
 {
 	temp_voltage = analogRead(temperatureAnalogInputPin) * 0.004882814;
 	degreesC = (voltage - 0.5) * 100.0;

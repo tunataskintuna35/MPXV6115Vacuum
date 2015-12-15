@@ -4,17 +4,17 @@
 #include "EEPROM.h"
 #include "MAX7219.h"
 
-LedControl lc=LedControl(12,11,10,4);
+LedControl lc=LedControl(12,11,10,4);				//MAX7219 segment pin ve nesne atamaları
 DRV8833 driver=DRV8833();					//DRV8833 sınıfı bir nesne olarak tanımlandırıldı
-MPXV6115V mpxv6115v(A0);
+MPXV6115V mpxv6115v(A0);					//MPXV6115V nesne ataması yapıldı
 
 
 
-const int vacuum=A0;						//vakum 
-const int temp=A1;
-const int batt=A2;
-const int up=2;
-const int down=3;
+const int vacuum=A0;						//vakum analog pin
+const int temp=A1;						//temperature analog pin
+const int batt=A2;						//battery analog pin
+const int up=2;							//setting değerini yukarı arttırmak için
+const int down=3;						//setting değerini aşağı azaltmak için 
 
 float vakum; 
 int setting=250;

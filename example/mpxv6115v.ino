@@ -21,7 +21,7 @@ int setting=250;
 int tolerance=25;
 
 
-float isivoltage,degreeC,degreeF;				//Isı değişkenlerinin tanımlanması 
+float temp_voltage,degreeC,degreeF;				//Isı değişkenlerinin tanımlanması 
 
 
 const unsigned long delaytime=250;
@@ -78,7 +78,7 @@ void monitor()
 }
 void temp_measure()
 {
-	voltage = analogRead(temperatureAnalogInputPin) * 0.004882814;
+	temp_voltage = analogRead(temperatureAnalogInputPin) * 0.004882814;
 	degreesC = (voltage - 0.5) * 100.0;
         //degreesF = degreesC * (9.0/5.0) + 32.0;
   	return degreesC;

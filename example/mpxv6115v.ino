@@ -21,7 +21,7 @@ int setting=250;
 int tolerance=25;
 
 
-float isivoltage,degreeC,degreeF;			//Isı değişkenlerinin tanımlanması 
+float isivoltage,degreeC,degreeF;				//Isı değişkenlerinin tanımlanması 
 
 
 const unsigned long delaytime=250;
@@ -34,35 +34,20 @@ void setup()
 		  pinMode(down,INPUT);
 		  Serial.begin(9600);
 		  while(!Serial);
-		  driver.attachMotorA(inputA1,inputA2);				//DRV8833 için motor bağlı olup olmadığını test etmek amaçlı
+		  driver.attachMotorA(inputA1,inputA2);		//DRV8833 için motor bağlı olup olmadığını test etmek amaçlı
 		  Serial.println("hazir");
-		  Serial.println("\n");
-	  //  attachInterrupt(digitalPinToInterrupt(up),upset,CHANGE)
+		  Serial.println("\n")			        //  attachInterrupt(digitalPinToInterrupt(up),upset,CHANGE)
 
 }
 
 void loop()
 {
-			
-	// BUTON İLE ARTTIRMA AZALTMA  
-	// digitalRead(up);
-	// digitalRead(down);
 
 		measure();
 		test();
 		set();
 		monitor();		
-
-
-
-
-
-	
-	driver.motorAStop();
-	
-	
-	
-	
+		temp_measure();
 }
 
 
@@ -91,4 +76,12 @@ void monitor()
 {
 
 }
+void temp_measure()
+{
+	voltage = analogRead(temperatureAnalogInputPin) * 0.004882814;
+	degreesC = (voltage - 0.5) * 100.0;
+        //degreesF = degreesC * (9.0/5.0) + 32.0;
+  	return degreesC;
+  
 
+}

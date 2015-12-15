@@ -21,6 +21,7 @@ int setting=250;
 int tolerance=25;
 float temp_voltage,degreeC,degreeF;				//Isı değişkenlerinin tanımlanması 
 const unsigned long delaytime=250;
+int temp_temp;
 
 
 
@@ -34,8 +35,12 @@ void setup()
 		  Serial.println("hazir");
 		  Serial.println("\n")			        //  attachInterrupt(digitalPinToInterrupt(up),upset,CHANGE)
 
-}
 
+		 lc.shutdown(0,false);
+		 lc.setIntensity(0,8);
+      		 lc.clearDisplay(0);
+}
+//**************************************************MAIN LOOP****************************************************************
 void loop()
 {
 
@@ -43,19 +48,19 @@ void loop()
 		test();
 		set();
 		monitor();		
-		temp_measure();
+		//temp_measure();
 }
 
 
 void measure()
 {
-		
+	temp_temp=temp_measure();	
 	
 	
 }
 void test()
 {
-
+	
 }
 
 void set()
@@ -65,14 +70,13 @@ void set()
 		driver.motorAForward();
 		vakum=analogRead(A0);
 	}
-
 }
 
 void monitor()
 {
 
 }
-unsigned int temp_measure()
+int temp_measure()
 {
 	temp_voltage = analogRead(temperatureAnalogInputPin) * 0.004882814;
 	degreesC = (voltage - 0.5) * 100.0;

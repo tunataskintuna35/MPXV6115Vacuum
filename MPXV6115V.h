@@ -7,7 +7,7 @@ class MPXV6115V
     public:
       MPXV6115V(int pin);
       float hesap();
-	  boolean fault();
+      //boolean fault();
     private:
       int _pin;
 };

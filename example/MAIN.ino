@@ -28,7 +28,7 @@ int tolerance=25;
 const unsigned long delaytime=250;
 int temp_temp;
 
-
+//**************************************************SETUP***********************************************************************
 
 void setup()
 {	
@@ -39,8 +39,6 @@ void setup()
 		  driver.attachMotorA(inputA1,inputA2);		//DRV8833 için motor bağlı olup olmadığını test etmek amaçlı
 		  Serial.println("hazir");
 		  Serial.println("\n")			        //  attachInterrupt(digitalPinToInterrupt(up),upset,CHANGE)
-
-
 		  lc.shutdown(0,false);
 		  lc.setIntensity(0,8);
       	          lc.clearDisplay(0);
@@ -50,6 +48,7 @@ void setup()
 //**************************************************MAIN LOOP****************************************************************
 void loop()
 {
+		sicaklik();
 
 		measure();
 		test();

@@ -15,7 +15,7 @@ const int inputA1 = 5, inputA2 = 6;
 //************************************************PİN ATAMALARI*************************************************************
 
 const int vacuum=A0;						//vakum analog pin
-const int temp=A1;						//temperature analog pin
+const int temperature=A1;						//temperature analog pin
 const int batt=A2;						//battery analog pin
 const int up=2;							//setting değerini yukarı arttırmak için
 const int down=3;						//setting değerini aşağı azaltmak için 
@@ -25,7 +25,6 @@ const int down=3;						//setting değerini aşağı azaltmak için
 float vakum; 
 int setting=250;
 int tolerance=25;
-float temp_voltage,degreeC,degreeF;				//Isı değişkenlerinin tanımlanması 
 const unsigned long delaytime=250;
 int temp_temp;
 
@@ -44,7 +43,7 @@ void setup()
 
 		  lc.shutdown(0,false);
 		  lc.setIntensity(0,8);
-      	  lc.clearDisplay(0);
+      	          lc.clearDisplay(0);
 }
 
 
@@ -60,23 +59,13 @@ void loop()
 }
 
 //***************************************************************FONKSİYONLAR*************************************************
-void measure()
+bool sicaklik()
 {
-	temp_temp=temp_measure();	
-	
-	
+	int reading=analogRead(temperature);
+	float voltage_=reading*5.0;
+	voltage/=1024.0;
+	float temperatureC=(voltage-0.5)*100;
+	if(temperatureC<0)
+		return 0;
+	return 1;
 }
-void test()
-{
-	
-}
-
-void set()
-{
-	while((vakum<setting-tolerance) || !(vakum>(setting+tolerance)) )					//Sensör ölçüm değerleri 225-275 arasında ise
-	{
-		driver.motorAForward();
-		vakum=analogRead(A0);
-	}
-}
-

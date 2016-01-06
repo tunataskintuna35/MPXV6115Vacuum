@@ -3,6 +3,7 @@
 #include "Arduino.h"
 #include "EEPROM.h"
 #include "MAX7219.h"
+#include "EEPROM.h"
 
 
 //************************************************NESNE ATAMALARI***********************************************************
@@ -49,9 +50,10 @@ void setup()
 void loop()
 {
 		sicaklik();
-
 		measure();
-		test();
+		
+		
+		//test();
 		set();
 		monitor();		
 		//temp_measures
@@ -68,3 +70,4 @@ bool sicaklik()
 		return 0;
 	return 1;
 }
+void setup()

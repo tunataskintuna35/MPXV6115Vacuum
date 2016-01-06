@@ -3,10 +3,14 @@
 #include "Arduino.h"
 #include "EEPROM.h"
 #include "MAX7219.h"
+
+
 //************************************************NESNE ATAMALARI***********************************************************
 LedControl lc=LedControl(12,11,10,4);				//MAX7219 segment pin ve nesne atamaları
 DRV8833 driver=DRV8833();					//DRV8833 sınıfı bir nesne olarak tanımlandırıldı
-MPXV6115V mpxv6115v(A0);					//MPXV6115V nesne ataması yapıldı
+MPXV6115V mpxv6115v(A0,A1);					//MPXV6115V nesne ataması yapıldı
+
+const int inputA1 = 5, inputA2 = 6;
 
 //************************************************PİN ATAMALARI*************************************************************
 
@@ -15,6 +19,8 @@ const int temp=A1;						//temperature analog pin
 const int batt=A2;						//battery analog pin
 const int up=2;							//setting değerini yukarı arttırmak için
 const int down=3;						//setting değerini aşağı azaltmak için 
+
+
 //*************************************************DEĞİŞKENLER**************************************************************
 float vakum; 
 int setting=250;
@@ -36,10 +42,12 @@ void setup()
 		  Serial.println("\n")			        //  attachInterrupt(digitalPinToInterrupt(up),upset,CHANGE)
 
 
-		 lc.shutdown(0,false);
-		 lc.setIntensity(0,8);
-      		 lc.clearDisplay(0);
+		  lc.shutdown(0,false);
+		  lc.setIntensity(0,8);
+      	  lc.clearDisplay(0);
 }
+
+
 //**************************************************MAIN LOOP****************************************************************
 void loop()
 {
@@ -48,10 +56,10 @@ void loop()
 		test();
 		set();
 		monitor();		
-		//temp_measure();
+		//temp_measures
 }
 
-
+//***************************************************************FONKSİYONLAR*************************************************
 void measure()
 {
 	temp_temp=temp_measure();	
@@ -72,16 +80,3 @@ void set()
 	}
 }
 
-void monitor()
-{
-
-}
-int temp_measure()
-{
-	temp_voltage = analogRead(temperatureAnalogInputPin) * 0.004882814;
-	degreesC = (voltage - 0.5) * 100.0;
-        //degreesF = degreesC * (9.0/5.0) + 32.0;
-  	return degreesC;
-  
-
-}

@@ -12,8 +12,5 @@ float MPXV6115V:: hesap()
   float kpa=((deger/5)-0.92)/(0.007652);
   float mmhg=kpa * (760/101.325);
   return mmhg;
-  boolean MPXV6115V::fault()
-  {
-	
-  }
+  //boolean MPXV6115V::fault()
 }

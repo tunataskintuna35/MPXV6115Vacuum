@@ -5,7 +5,7 @@
 class MPXV6115V
 {
     public:
-      MPXV6115V(int pin);
+      MPXV6115V(int pin);//kurucu fonksiyon
       float hesap();
       //boolean fault();
     private:
